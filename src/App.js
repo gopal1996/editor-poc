@@ -1,7 +1,7 @@
 import React from 'react'
 import './App.css'
-import Ckeditor4 from './Ckeditor4';
-import { Ckeditor5Build, Ckeditor5Editor } from './Ckeditor5';
+// import Ckeditor4 from './Ckeditor4';
+// import { Ckeditor5Build, Ckeditor5Editor } from './Ckeditor5';
 
 import Tinymce from './Tinymce';
 import TinymcePaste from './Tinymcepaste';
