@@ -46,7 +46,7 @@ const App = () => {
                         <li><a href="https://github.com/ckeditor/ckeditor4">Github Link</a></li>
                     </ul>
                 </div>
-                <Ckeditor4 />
+                {/* <Ckeditor4 />
                 <hr/>
                 <h3 style={style}>Ckeditor 5 Ready to use version Demo</h3>
                 <div className="github" style={{margin: "0 auto"}}>
@@ -57,7 +57,7 @@ const App = () => {
                         <li><a href="https://github.com/ckeditor/ckeditor5">Github Link</a></li>
                     </ul>
                 </div>
-                <Ckeditor5Build />
+                <Ckeditor5Build /> */}
                 {/* <Ckeditor5Editor /> */}
             </div>
         </section>

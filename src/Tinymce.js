@@ -18,7 +18,7 @@ const Tinymce = () => {
         <div className="wrapper">
             <div className="flow-field">
                 <ul className="flow-field--list" onDragStart={handlingDragDrop}>
-                    <li data-value="{{requestor_email}}" className="flow-field--item" draggable="true">Requestor Email</li>
+                    <li data-value="{{requestor_email}}" className="flow-field--item" contentEditable="false" draggable="true">Requestor Email</li>
                     <li data-value="{{created_by}}" className="flow-field--item" draggable="true">Created By</li>
                     <li data-value="{{created_at}}" className="flow-field--item" draggable="true">Created At</li>
                     <li data-value="{{requestor_name}}" className="flow-field--item" draggable="true">Requestor Name</li>
