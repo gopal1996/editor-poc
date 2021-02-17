@@ -37,7 +37,7 @@ const App = () => {
                 </div>
                 <TinymcePaste />
                 <hr/>
-                <h3 style={style}>Ckeditor 4 Demo</h3>
+                {/* <h3 style={style}>Ckeditor 4 Demo</h3>
                 <div className="github" style={{margin: "0 auto"}}>
                     <ul>
                         <li>Github Stars - 5.3k</li>
@@ -45,7 +45,7 @@ const App = () => {
                         <li>Recent Commit - 19 days ago</li>
                         <li><a href="https://github.com/ckeditor/ckeditor4">Github Link</a></li>
                     </ul>
-                </div>
+                </div> */}
                 {/* <Ckeditor4 />
                 <hr/>
                 <h3 style={style}>Ckeditor 5 Ready to use version Demo</h3>
