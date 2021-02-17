@@ -35,7 +35,7 @@ const Tinymce = () => {
                     plugins: [
                         'autolink lists link image print preview anchor',
                         'code',
-                        'paste',
+                        'powerpaste',
                         'table'
                     ],
                     toolbar:
