@@ -1,0 +1,36 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    padding: 5%;
+}
+
+.flow-field--list {
+    list-style-type: none;
+}
+
+.flow-field--item {
+    padding: .5rem;
+    background: #468dc1;
+    border-radius: 3px;
+    margin: 1rem 0;
+    color: #fff;
+    cursor: pointer;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 2rem;
+}
+
+.ck-editor__main {
+    height: 500px;
+}
+
+.ck-content {
+    height: 100%;
+}
+
+.editor-wrapper {
+    width: 800px;
+}
