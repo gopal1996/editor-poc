@@ -35,10 +35,11 @@ const Tinymce = () => {
                     plugins: [
                         'autolink lists link image print preview anchor',
                         'code',
-                        'paste'
+                        'paste',
+                        'table'
                     ],
                     toolbar:
-                        'bold italic | alignleft alignright aligncenter alignjustify | bullist numlist | image code',
+                        'bold italic | alignleft alignright aligncenter alignjustify | bullist numlist | image code table tabledelete | tableprops tablerowprops tablecellprops | tableinsertrowbefore tableinsertrowafter tabledeleterow | tableinsertcolbefore tableinsertcolafter tabledeletecol',
                     paste_data_images: true,
                     paste_enable_default_filters: false,
                     paste_remove_styles_if_webkit: false

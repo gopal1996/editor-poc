@@ -24,7 +24,7 @@ const Ckeditor4 = () => {
                             toolbar: [
                                 [ 'Source' ],
                                 [ 'Styles', 'Format', 'Font', 'FontSize' ],
-                                [ 'Bold', 'Italic' ],
+                                [ 'Bold', 'Italic', 'dialog', 'dialogui', 'table', 'tabletools', 'tabletoolstoolbar' ],
                                 [ 'PasteFromWord','pastetools','clipboard', 'Undo', 'Redo' ],
                                 [ 'About' ]
                             ],
