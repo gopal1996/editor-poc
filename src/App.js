@@ -15,7 +15,7 @@ const App = () => {
     return (
         <section className="main">
             <div className="container">
-                <h3 style={style}>TinyMce Demo</h3>
+                <h3 style={style}>TinyMce Powerpaste Demo</h3>
                 <div className="github" style={{margin: "0 auto"}}>
                     <ul>
                         <li>Github Stars - 9.1k</li>
