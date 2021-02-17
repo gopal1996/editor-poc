@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Editor } from '@tinymce/tinymce-react';
 
-const Tinymce = () => {
+const TinymcePaste = () => {
     const handleEditorChange = (content, editor) => {
         console.log(content);
     }
@@ -35,7 +35,7 @@ const Tinymce = () => {
                     plugins: [
                         'autolink lists link image print preview anchor',
                         'code',
-                        'powerpaste',
+                        'paste',
                         'table'
                     ],
                     toolbar:
@@ -51,4 +51,4 @@ const Tinymce = () => {
     )
 }
 
-export default Tinymce
+export default TinymcePaste

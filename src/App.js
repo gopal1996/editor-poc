@@ -4,6 +4,7 @@ import Ckeditor4 from './Ckeditor4';
 import { Ckeditor5Build, Ckeditor5Editor } from './Ckeditor5';
 
 import Tinymce from './Tinymce';
+import TinymcePaste from './Tinymcepaste';
 
 const style = {
     textAlign: "center"
@@ -24,6 +25,17 @@ const App = () => {
                     </ul>
                 </div>
                 <Tinymce />
+                <hr/>
+                <h3 style={style}>TinyMce Paste Demo</h3>
+                <div className="github" style={{margin: "0 auto"}}>
+                    <ul>
+                        <li>Github Stars - 9.1k</li>
+                        <li>Github Open Issue - 556</li>
+                        <li>Recent Commit - 3 days ago</li>
+                        <li><a href="https://github.com/tinymce/tinymce">Github Link</a></li>
+                    </ul>
+                </div>
+                <TinymcePaste />
                 <hr/>
                 <h3 style={style}>Ckeditor 4 Demo</h3>
                 <div className="github" style={{margin: "0 auto"}}>
