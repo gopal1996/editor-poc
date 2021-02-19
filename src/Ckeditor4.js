@@ -23,14 +23,15 @@ const Ckeditor4 = () => {
                         config={{
                             toolbar: [
                                 [ 'Source' ],
-                                [ 'Styles', 'Format', 'Font', 'FontSize' ],
+                                [ 'Styles', 'Format', 'Font', 'FontSize', 'Image', 'uploadimage','uploadwidget','filetools','filebrowser' ],
                                 [ 'Bold', 'Italic', 'dialog', 'dialogui', 'table', 'tabletools', 'tabletoolstoolbar' ],
                                 [ 'PasteFromWord','pastetools','clipboard', 'Undo', 'Redo' ],
                                 [ 'About' ]
                             ],
                             allowedContent: true,
                             height: 500,
-                            width: 800
+                            width: 800,
+                            filebrowserImageUploadUrl: "http://localhost:5000/upload"
                         }}
                         
                 />

@@ -1,7 +1,7 @@
 import React from 'react'
 import './App.css'
-// import Ckeditor4 from './Ckeditor4';
-// import { Ckeditor5Build, Ckeditor5Editor } from './Ckeditor5';
+import Ckeditor4 from './Ckeditor4';
+import { Ckeditor5Build } from './Ckeditor5';
 
 import Tinymce from './Tinymce';
 import TinymcePaste from './Tinymcepaste';
@@ -11,6 +11,25 @@ const style = {
 }
 
 const App = () => {
+
+    // const [file, setFile] = useState('')
+
+    const handleFile = (env) => {
+        env.preventDefault()
+        // console.log()
+        // setFile(env.target.files[0])
+        // console.log(file)
+        const data = new FormData()
+        data.append('file', env.target.files[0])
+        // data.append('filename', file.name)
+
+        fetch("http://127.0.0.1:5000/upload", {
+            method: 'POST',
+            body: data
+        })
+        .then((res) => res.json())
+        .then(body => console.log(body))
+    }
 
     return (
         <section className="main">
@@ -37,7 +56,8 @@ const App = () => {
                 </div>
                 <TinymcePaste />
                 <hr/>
-                {/* <h3 style={style}>Ckeditor 4 Demo</h3>
+                <input type="file" onChange={handleFile} />
+                <h3 style={style}>Ckeditor 4 Demo</h3>
                 <div className="github" style={{margin: "0 auto"}}>
                     <ul>
                         <li>Github Stars - 5.3k</li>
@@ -45,8 +65,8 @@ const App = () => {
                         <li>Recent Commit - 19 days ago</li>
                         <li><a href="https://github.com/ckeditor/ckeditor4">Github Link</a></li>
                     </ul>
-                </div> */}
-                {/* <Ckeditor4 />
+                </div>
+                <Ckeditor4 />
                 <hr/>
                 <h3 style={style}>Ckeditor 5 Ready to use version Demo</h3>
                 <div className="github" style={{margin: "0 auto"}}>
@@ -57,7 +77,7 @@ const App = () => {
                         <li><a href="https://github.com/ckeditor/ckeditor5">Github Link</a></li>
                     </ul>
                 </div>
-                <Ckeditor5Build /> */}
+                <Ckeditor5Build />
                 {/* <Ckeditor5Editor /> */}
             </div>
         </section>

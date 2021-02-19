@@ -14,6 +14,50 @@ const TinymcePaste = () => {
         event.dataTransfer.setData('text/plain', draggedValue)
     }
 
+    function image_upload_handler (blobInfo, success, failure, progress) {
+        var xhr, formData;
+      
+        xhr = new XMLHttpRequest();
+        xhr.withCredentials = false;
+        xhr.open('POST', 'http://localhost:5000/upload');
+      
+        xhr.upload.onprogress = function (e) {
+          progress(e.loaded / e.total * 100);
+        };
+      
+        xhr.onload = function() {
+          var json;
+      
+          if (xhr.status === 403) {
+            failure('HTTP Error: ' + xhr.status, { remove: true });
+            return;
+          }
+      
+          if (xhr.status < 200 || xhr.status >= 300) {
+            failure('HTTP Error: ' + xhr.status);
+            return;
+          }
+      
+          json = JSON.parse(xhr.responseText);
+      
+          if (!json || typeof json.location != 'string') {
+            failure('Invalid JSON: ' + xhr.responseText);
+            return;
+          }
+      
+          success(json.location);
+        };
+      
+        xhr.onerror = function () {
+          failure('Image upload failed due to a XHR Transport error. Code: ' + xhr.status);
+        };
+      
+        formData = new FormData();
+        formData.append('file', blobInfo.blob(), blobInfo.filename());
+      
+        xhr.send(formData);
+      };
+
     return (
         <div className="wrapper">
             <div className="flow-field">
@@ -41,6 +85,8 @@ const TinymcePaste = () => {
                     toolbar:
                         'bold italic | alignleft alignright aligncenter alignjustify | bullist numlist | image code table tabledelete | tableprops tablerowprops tablecellprops | tableinsertrowbefore tableinsertrowafter tabledeleterow | tableinsertcolbefore tableinsertcolafter tabledeletecol',
                     paste_data_images: true,
+                    automatic_uploads: true,
+                    images_upload_handler: image_upload_handler
                     }}
                     // paste_word_valid_elements: 'b,strong,i,em,h1,h2,h3,h4,table,th,td,p,img',
                     // paste_retain_style_properties: 'all'

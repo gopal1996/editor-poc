@@ -14,6 +14,12 @@ const Tinymce = () => {
         event.dataTransfer.setData('text/plain', draggedValue)
     }
 
+    const draghandleFocus = (content, editor) => {
+        editor.dom.bind(editor.getBody(), 'dragenter', function() {
+            editor.focus();
+        });
+    }
+
     return (
         <div className="wrapper">
             <div className="flow-field">
@@ -45,6 +51,7 @@ const Tinymce = () => {
                     // paste_word_valid_elements: 'b,strong,i,em,h1,h2,h3,h4,table,th,td,p,img',
                     // paste_retain_style_properties: 'all'
                     onEditorChange={handleEditorChange}
+                    onInit={draghandleFocus}
                 />
             </div>
         </div>
