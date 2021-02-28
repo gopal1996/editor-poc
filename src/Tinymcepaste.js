@@ -67,8 +67,16 @@ const TinymcePaste = () => {
         method: 'POST',
         body: bodydata
       })
-      .then(res => res.json())
-      .then(out => console.log(out))
+      .then(res => res.blob())
+      .then(blob => {
+        var url = window.URL.createObjectURL(blob);
+            var a = document.createElement('a');
+            a.href = url;
+            a.download = `${+new Date()}.pdf`;
+            document.body.appendChild(a); // we need to append the element to the dom -> otherwise it will not work in firefox
+            a.click();    
+            a.remove();
+      })
     }
 
     function image_upload_handler (blobInfo, success, failure, progress) {
@@ -153,7 +161,15 @@ const TinymcePaste = () => {
                     onInit={pasteTextHandler}
                 />
 
-                <button onClick={handleSubmit}>Send data to server</button>
+                <button onClick={handleSubmit} style={{
+                  padding: ".5rem 1rem", 
+                  background: "#e91d63",
+                  color: "#fff",
+                  border: "none",
+                  borderRadius: "5px",
+                  cursor: "pointer",
+                  marginTop: "1rem"
+                  }}>Generate PDF</button>
             </div>
         </div>
     )
