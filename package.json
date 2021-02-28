@@ -13,10 +13,12 @@
   "dependencies": {
     "@ckeditor/ckeditor5-build-classic": "^25.0.0",
     "@ckeditor/ckeditor5-react": "^3.0.1",
+    "@prezly/docx-cleaner": "0.1.0-alpha.27",
     "@tinymce/tinymce-react": "^3.10.1",
     "ckeditor4-react": "^1.4.0",
     "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "react-dom": "^17.0.1",
+    "tinymce": "^5.7.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",

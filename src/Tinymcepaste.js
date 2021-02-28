@@ -1,10 +1,12 @@
-import React from 'react'
-
+import React, {useState} from 'react'
+import { cleanDocx } from '@prezly/docx-cleaner'
 import { Editor } from '@tinymce/tinymce-react';
 
 const TinymcePaste = () => {
+    const [data, setData] = useState("<p>This is the initial content of the editor</p>")
+
     const handleEditorChange = (content, editor) => {
-        console.log(content);
+      setData(content)
     }
 
     const handlingDragDrop = (event) => {
@@ -12,6 +14,61 @@ const TinymcePaste = () => {
         const draggedValue = event.target.dataset["value"]
         // event.dataTransfer.effectAllowed = 'move'
         event.dataTransfer.setData('text/plain', draggedValue)
+    }
+
+    const pasteTextHandler = (content, editor) => {
+      editor.dom.bind(editor.getBody(), 'paste', function(evt) {
+        let g = evt.clipboardData || window.clipboardData;
+
+        let html = g.getData('text/html');
+        let rtf = g.getData('text/rtf');
+        
+        try {
+          const cleanHtml = cleanDocx(html, rtf)
+          console.log(cleanHtml)
+
+          var m;
+          let imageList = [];
+          var re = /<img[^>]+src="([^">]+)"/g
+
+          while(m = re.exec(cleanHtml)) {
+            imageList.push(m[1])
+          }
+
+          if(imageList.length > 0) {
+            let editorData = editor.getContent();
+
+            var n;
+            let localFile = [];
+            while(n = re.exec(editorData)) {
+              localFile.push(n[1])
+            }
+
+            for(let i=0; i< imageList.length; i++) {
+              editorData = editorData.replace(localFile[i], imageList[i])
+            }
+
+            editor.setContent(editorData)
+          }
+
+        } catch(err) {
+          console.error(err)
+        }
+      })
+    }
+
+    
+
+    const handleSubmit = event => {
+      const bodydata = new FormData()
+      bodydata.append("desc", data)
+
+      fetch("http://localhost:5000/pdf", {
+        method: 'POST',
+        body: bodydata
+      })
+      .then(res => res.json())
+      .then(out => console.log(out))
     }
 
     function image_upload_handler (blobInfo, success, failure, progress) {
@@ -71,7 +128,7 @@ const TinymcePaste = () => {
             <div className="editor-wrapper">
                 <Editor
                     apiKey="ppe8bocqidi6k504raaby1y8j4ue3c0l7wgvcuujgopdzsuh"
-                    initialValue="<p>This is the initial content of the editor</p>"
+                    initialValue={data}
                     init={{
                     width: 800,
                     height: 500,
@@ -86,12 +143,17 @@ const TinymcePaste = () => {
                         'bold italic | alignleft alignright aligncenter alignjustify | bullist numlist | image code table tabledelete | tableprops tablerowprops tablecellprops | tableinsertrowbefore tableinsertrowafter tabledeleterow | tableinsertcolbefore tableinsertcolafter tabledeletecol',
                     paste_data_images: true,
                     automatic_uploads: true,
-                    images_upload_handler: image_upload_handler
+                    paste_enable_default_filters: false,	
+                    paste_remove_styles_if_webkit: false,
+                    images_upload_handler: image_upload_handler,
                     }}
                     // paste_word_valid_elements: 'b,strong,i,em,h1,h2,h3,h4,table,th,td,p,img',
                     // paste_retain_style_properties: 'all'
                     onEditorChange={handleEditorChange}
+                    onInit={pasteTextHandler}
                 />
+
+                <button onClick={handleSubmit}>Send data to server</button>
             </div>
         </div>
     )
